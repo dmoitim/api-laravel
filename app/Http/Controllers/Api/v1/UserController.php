@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return new UserResource(User::where('id', $id)->first());
     }
 
     /**
