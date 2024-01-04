@@ -32,7 +32,7 @@ class InvoiceResource extends JsonResource
             ],
             'type' => $this->types[$this->type],
             'paid' => $this->paid ? 'Pago' : 'Não pago',
-            'value' => 'R$ ' . number_format($this->value,2, ',', '.'),
+            'value' => 'R$ ' . number_format($this->value, 2, ',', '.'),
             'payment_date' => $this->paid ? Carbon::parse($this->payment_date)->format('d/m/Y H:i:s') : NULL,
             'payment_since' => $this->paid ? Carbon::parse($this->payment_date)->diffForHumans() : NULL
         ];
