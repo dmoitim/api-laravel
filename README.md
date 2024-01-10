@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# api-laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Código-fonte dos estudos de criação de uma API REST utlizando Laravel 10.
 
-## About Laravel
+## Como utilizar
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Configuração da conexão com o banco de dados
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Copie o arquivo .env.example, renomeando-o para .env e configure seu banco de dados. Segue um exemplo caso você esteja utilizando MySQL:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=api-laravel
+DB_USERNAME=root
+DB_PASSWORD=123456!@
+```
 
-## Learning Laravel
+Lembre-se de alterar os valores do host, database, username e password de acordo com sua instalação.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Endpoints da API
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Após executar o projeto, serão disponibilizadas as URLs listadas abaixo. Para facilitar, vou manter como "http://127.0.0.1:8000", mas fique à vontade para alterar de acordo com sua configuração.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Endpoints de Usuários
+1- Retornar todos os usuários
+```
+http://127.0.0.1:8000/api/v1/users
+```
 
-## Laravel Sponsors
+2- Retornar um usuário (por ID)
+```
+http://127.0.0.1:8000/api/v1/users/1
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Endpoints de Pagamentos
+1- Retornar todos os pagamentos
+```
+http://127.0.0.1:8000/api/v1/invoices
+```
 
-### Premium Partners
+2- Retornar todos os pagamentos (com filtros)
+```
+http://127.0.0.1:8000/api/v1/invoices?paid[eq]=1&type[in]=[C,B]&value[gte]=9000
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3- Retornar um pagamento (por ID)
+```
+http://127.0.0.1:8000/api/v1/invoices/1
+```
 
-## Contributing
+4- Inserir um pagamento
+```
+http://127.0.0.1:8000/api/v1/invoices
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+// Exemplo do corpo da requisição
+{
+	"user_id": 2,
+	"type": "P",
+	"paid": 1,
+	"value": 100.58
+}
+```
 
-## Code of Conduct
+5- Atualizar um pagamento (por ID)
+http://127.0.0.1:8000/api/v1/invoices/1
+```
+// Exemplo do corpo da requisição
+{
+	"user_id": 2,
+	"type": "C",
+	"paid": 1,
+	"value": 1011.58,
+	"payment_date": "2024-01-01 03:06:41"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6- Excluir um pagamento (por ID)
+```
+http://127.0.0.1:8000/api/v1/invoices/99
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Link da playlist dos vídeos (Clube Full-Stack): https://www.youtube.com/watch?v=9k5pJq3Oz8o&list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&index=1
