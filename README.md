@@ -66,7 +66,10 @@ http://127.0.0.1:8000/api/v1/invoices
 ```
 
 5- Atualizar um pagamento (por ID)
+```
 http://127.0.0.1:8000/api/v1/invoices/1
+```
+
 ```
 // Exemplo do corpo da requisição
 {
